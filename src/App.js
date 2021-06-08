@@ -55,6 +55,17 @@ function CourseInfo() {
   );
 }
 
+const Button = ({ text, clickHandler }) => {
+  return <button onClick={clickHandler}>{text}</button>;
+};
+
+const Statistic = ({ name, value }) => {
+  return (
+    <div>
+      <strong>{name}</strong> {value}
+    </div>
+  );
+};
 const Statistics = ({ good, neutral, bad, average, positiveFeedback }) => {
   if (good + neutral + bad === 0) {
     return <div>No feedback given</div>;
@@ -62,24 +73,12 @@ const Statistics = ({ good, neutral, bad, average, positiveFeedback }) => {
     return (
       <div>
         <h2>statistics</h2>
-        <div>
-          <strong>good</strong> {good}{" "}
-        </div>
-        <div>
-          <strong>neutral</strong> {neutral}{" "}
-        </div>
-        <div>
-          <strong>bad</strong> {bad}{" "}
-        </div>
-        <div>
-          <strong>all</strong> {good + neutral + bad}{" "}
-        </div>
-        <div>
-          <strong>average</strong> {average}{" "}
-        </div>
-        <div>
-          <strong>positive</strong> {positiveFeedback} %
-        </div>
+        <Statistic name="good" value={good} />
+        <Statistic name="neutral" value={neutral} />
+        <Statistic name="bad" value={bad} />
+        <Statistic name="all" value={good + neutral + bad} />
+        <Statistic name="average" value={average} />
+        <Statistic name="positive" value={positiveFeedback} />
       </div>
     );
   }
@@ -97,9 +96,9 @@ const App = () => {
     <div>
       <div>
         <h2>give feedback</h2>
-        <button>good</button>
-        <button>neutral</button>
-        <button>bad</button>
+        <Button text="good" />
+        <Button text="neutral" />
+        <Button text="bad" />
       </div>
       <Statistics
         good={good}
