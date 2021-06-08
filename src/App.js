@@ -97,8 +97,6 @@ const App = () => {
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
-  const [average, setAverage] = useState(0);
-  const [positiveFeedback, setPositiveFeedback] = useState(0);
 
   const increaseGoodScore = () => setGood(good + 1);
   const increaseNeutralScore = () => setNeutral(neutral + 1);
