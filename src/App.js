@@ -94,26 +94,30 @@ const Statistics = ({ good, neutral, bad, average, positiveFeedback }) => {
 
 const App = () => {
   // save clicks of each button to its own state
-  const [good, setGood] = useState(1);
+  const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
   const [average, setAverage] = useState(0);
   const [positiveFeedback, setPositiveFeedback] = useState(0);
 
+  const increaseGoodScore = () => setGood(good + 1);
+  const increaseNeutralScore = () => setNeutral(neutral + 1);
+  const increaseBadScore = () => setBad(bad + 1);
+
   return (
     <div>
       <div>
         <h2>give feedback</h2>
-        <Button text="good" />
-        <Button text="neutral" />
-        <Button text="bad" />
+        <Button text="good" clickHandler={increaseGoodScore} />
+        <Button text="neutral" clickHandler={increaseNeutralScore} />
+        <Button text="bad" clickHandler={increaseBadScore} />
       </div>
       <Statistics
         good={good}
         bad={bad}
         neutral={neutral}
-        average={average}
-        positiveFeedback={positiveFeedback}
+        average={(good - bad) / (good + bad + neutral)}
+        positiveFeedback={good / (good + bad + neutral)}
       />
     </div>
   );
