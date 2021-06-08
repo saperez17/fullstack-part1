@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./styles.css";
 
 const Header = (props) => {
@@ -27,7 +28,7 @@ const Total = (props) => {
   );
 };
 
-export default function App() {
+function CourseInfo() {
   const course = {
     name: "Half Stack application development",
     parts: [
@@ -53,3 +54,53 @@ export default function App() {
     </div>
   );
 }
+
+const Statistics = ({ text, val }) => {
+  return (
+    <div>
+      {" "}
+      <strong>{text}</strong> {val}
+    </div>
+  );
+};
+
+const App = () => {
+  // save clicks of each button to its own state
+  const [good, setGood] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+  const [bad, setBad] = useState(0);
+  const [average, setAverage] = useState(0);
+  const [positiveFeedback, setPositiveFeedback] = useState(0);
+
+  return (
+    <div>
+      <div>
+        <h2>give feedback</h2>
+        <button>good</button>
+        <button>neutral</button>
+        <button>bad</button>
+      </div>
+      <h2>statistics</h2>
+      <div>
+        <Statistics text="good" val={good} />
+      </div>
+      <div>
+        <Statistics text="neutral" val={neutral} />
+      </div>
+      <div>
+        <Statistics text="bad" val={bad} />
+      </div>
+      <div>
+        <Statistics text="all" val={good + neutral + bad} />
+      </div>
+      <div>
+        <Statistics text="average" val={average} />
+      </div>
+      <div>
+        <Statistics text="positive" val={positiveFeedback} />
+      </div>
+    </div>
+  );
+};
+
+export default App;
