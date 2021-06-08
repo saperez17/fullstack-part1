@@ -55,13 +55,34 @@ function CourseInfo() {
   );
 }
 
-const Statistics = ({ text, val }) => {
-  return (
-    <div>
-      {" "}
-      <strong>{text}</strong> {val}
-    </div>
-  );
+const Statistics = ({ good, neutral, bad, average, positiveFeedback }) => {
+  if (good + neutral + bad === 0) {
+    return <div>No feedback given</div>;
+  } else {
+    return (
+      <div>
+        <h2>statistics</h2>
+        <div>
+          <strong>good</strong> {good}{" "}
+        </div>
+        <div>
+          <strong>neutral</strong> {neutral}{" "}
+        </div>
+        <div>
+          <strong>bad</strong> {bad}{" "}
+        </div>
+        <div>
+          <strong>all</strong> {good + neutral + bad}{" "}
+        </div>
+        <div>
+          <strong>average</strong> {average}{" "}
+        </div>
+        <div>
+          <strong>positive</strong> {positiveFeedback} %
+        </div>
+      </div>
+    );
+  }
 };
 
 const App = () => {
@@ -80,25 +101,13 @@ const App = () => {
         <button>neutral</button>
         <button>bad</button>
       </div>
-      <h2>statistics</h2>
-      <div>
-        <Statistics text="good" val={good} />
-      </div>
-      <div>
-        <Statistics text="neutral" val={neutral} />
-      </div>
-      <div>
-        <Statistics text="bad" val={bad} />
-      </div>
-      <div>
-        <Statistics text="all" val={good + neutral + bad} />
-      </div>
-      <div>
-        <Statistics text="average" val={average} />
-      </div>
-      <div>
-        <Statistics text="positive" val={positiveFeedback} />
-      </div>
+      <Statistics
+        good={good}
+        bad={bad}
+        neutral={neutral}
+        average={average}
+        positiveFeedback={positiveFeedback}
+      />
     </div>
   );
 };
